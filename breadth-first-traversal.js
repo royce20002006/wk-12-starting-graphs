@@ -8,7 +8,24 @@ const adjList = {
 }
 
 function printBreadthFirst(start) {
-  let visited = new Set();
+  let visited = new Set().add(start)
+  let queue = [start]
+  
+
+  while(queue.length){
+    
+    let curr = queue.shift()
+    
+    console.log(curr)
+    let neighbors = adjList[curr]
+    for(let val of neighbors){
+      
+      if(!visited.has(val)){
+        queue.push(val)
+        visited.add(val)
+    }
+  }
+}
   
 }
 
