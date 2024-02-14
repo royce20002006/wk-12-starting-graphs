@@ -1,14 +1,33 @@
 const adjList = {
-    1: [2, 5],
-    2: [1, 3, 5],
-    3: [2, 4],
-    4: [3, 5],
-    5: [1, 2, 4],
-    6: []
+  1: [2, 5],
+  2: [1, 3, 5],
+  3: [2, 4],
+  4: [3, 5],
+  5: [1, 2, 4],
+  6: []
 }
 
 function aShortestPath(start, end) {
-  // your code here
+  let visited = new Set().add(start)
+  let queue = [[start, [start]]]
+  // console.log(visited)
+
+  while (queue.length) {
+    // console.log('visited', visited)
+    // console.log('queue',queue)
+    let [node, path] = queue.shift()
+    // console.log('curr', curr)
+    if (node  === end) {
+      return path;
+    }
+    for (let val of adjList[node]) {
+      // console.log('val', val)
+      if (!visited.has(val)) {
+        visited.add(val)
+        queue.push([val,[...path, val]])
+      }
+    }
+  }
 }
 
 console.log("First Test:");
