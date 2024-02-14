@@ -8,7 +8,22 @@ const adjList = {
 }
 
 function degreesOfSeparation(start, end) {
-  // your code here
+  let visited = new Set().add(start);
+  let que = [[start, 0]];
+
+  while (que.length) {
+    let [node, length] = que.shift()
+    if (node === end) return length;
+
+    let neighbors = adjList[node];
+    for (let val of neighbors) {
+      if (!visited.has(val)) {
+        que.push([val, length+1]);
+        visited.add(val)
+      }
+    }
+  }
+  return false;
 }
 
 console.log("First Test:");
